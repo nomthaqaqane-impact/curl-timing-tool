@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
-import stat
 import sys
+import stat
 
 # ----------------------------
 # Configuration
@@ -22,7 +22,7 @@ os.makedirs(INSTALL_DIR, exist_ok=True)
 os.makedirs(BIN_DIR, exist_ok=True)
 
 # ----------------------------
-# Download curl-format.txt using curl
+# Download curl-format.txt using curl (avoids SSL issues)
 # ----------------------------
 curl_format_path = os.path.join(INSTALL_DIR, "curl-format.txt")
 print(f"Downloading curl-format.txt to {curl_format_path}...")
