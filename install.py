@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 import os
-import sys
 import stat
-import urllib.request
+import sys
 
 # ----------------------------
 # Configuration
@@ -23,14 +22,14 @@ os.makedirs(INSTALL_DIR, exist_ok=True)
 os.makedirs(BIN_DIR, exist_ok=True)
 
 # ----------------------------
-# Download curl-format.txt
+# Download curl-format.txt using curl
 # ----------------------------
 curl_format_path = os.path.join(INSTALL_DIR, "curl-format.txt")
-try:
-    print(f"Downloading curl-format.txt to {curl_format_path}...")
-    urllib.request.urlretrieve(GITHUB_RAW_URL, curl_format_path)
-except Exception as e:
-    print(f"Error downloading curl-format.txt: {e}")
+print(f"Downloading curl-format.txt to {curl_format_path}...")
+download_cmd = f'curl -fsSL -o "{curl_format_path}" "{GITHUB_RAW_URL}"'
+result = os.system(download_cmd)
+if result != 0:
+    print("❌ Error downloading curl-format.txt. Make sure curl is installed and internet is working.")
     sys.exit(1)
 
 # ----------------------------
